@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dkcisf2banry6"]
 
-[ext_resource type="Script" path="res://enemy/basic_enemy.gd" id="1_5cbts"]
+[ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://enemy/basic_enemy.gd" id="1_5cbts"]
 [ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/Simple Shapes/Square.png" id="2_qfrx8"]
 [ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="3_1cm0g"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="4_t320u"]
@@ -78,10 +78,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46rjc"]
 _data = {
-"RESET": SubResource("Animation_rjmyo"),
-"end": SubResource("Animation_xki0v"),
-"idle": SubResource("Animation_jde6n"),
-"start": SubResource("Animation_5w6q7")
+&"RESET": SubResource("Animation_rjmyo"),
+&"end": SubResource("Animation_xki0v"),
+&"idle": SubResource("Animation_jde6n"),
+&"start": SubResource("Animation_5w6q7")
 }
 
 [node name="square" type="RigidBody2D" node_paths=PackedStringArray("instancer")]

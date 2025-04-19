@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bpnsmigxvqh72"]
 
 [ext_resource type="Texture2D" uid="uid://bngha1um8qac5" path="res://assets/Simple Shapes/Circle 2.png" id="1_0mp7k"]
-[ext_resource type="Script" path="res://component/weak_point.gd" id="1_x2og3"]
+[ext_resource type="Script" uid="uid://bfgdhtn61ms2r" path="res://component/weak_point.gd" id="1_x2og3"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="3_8f07l"]
 
 [sub_resource type="Gradient" id="Gradient_xu3ua"]
@@ -130,10 +130,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjb12"]
 _data = {
-"RESET": SubResource("Animation_d51ka"),
-"end": SubResource("Animation_hxis1"),
-"idle": SubResource("Animation_8fj2w"),
-"start": SubResource("Animation_fpcv4")
+&"RESET": SubResource("Animation_d51ka"),
+&"end": SubResource("Animation_hxis1"),
+&"idle": SubResource("Animation_8fj2w"),
+&"start": SubResource("Animation_fpcv4")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i0pu6"]

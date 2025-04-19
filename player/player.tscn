@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b0723ai8638lk"]
 
 [ext_resource type="Texture2D" uid="uid://hn8sjrcnuvdm" path="res://assets/Simple Shapes/Circle.png" id="1_iuq15"]
-[ext_resource type="Script" path="res://player/player.gd" id="1_vijd8"]
+[ext_resource type="Script" uid="uid://cbvji6hh4n7ds" path="res://player/player.gd" id="1_vijd8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://duwovfh1uj425" path="res://player/animation_tree/new_animation_node_state_machine.tres" id="3_3o7y3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_if5dw"]
@@ -160,12 +160,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vdu2e"]
 _data = {
-"RESET": SubResource("Animation_s6lek"),
-"aim": SubResource("Animation_81vrh"),
-"grow_in": SubResource("Animation_6str7"),
-"hovering": SubResource("Animation_3pcay"),
-"idle": SubResource("Animation_7j8cn"),
-"moving": SubResource("Animation_5hbvx")
+&"RESET": SubResource("Animation_s6lek"),
+&"aim": SubResource("Animation_81vrh"),
+&"grow_in": SubResource("Animation_6str7"),
+&"hovering": SubResource("Animation_3pcay"),
+&"idle": SubResource("Animation_7j8cn"),
+&"moving": SubResource("Animation_5hbvx")
 }
 
 [node name="Player" type="RigidBody2D"]
