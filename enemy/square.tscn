@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://dkcisf2banry6"]
+
+[ext_resource type="Script" path="res://enemy/basic_enemy.gd" id="1_5cbts"]
+[ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/Simple Shapes/Square.png" id="2_qfrx8"]
+[ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="3_1cm0g"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="4_t320u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ffs2"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbgyn"]
+size = Vector2(104, 104)
+
+[sub_resource type="Animation" id="Animation_5w6q7"]
+resource_name = "start"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_rjmyo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_xki0v"]
+resource_name = "end"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 2),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.4, 0.4)]
+}
+
+[sub_resource type="Animation" id="Animation_jde6n"]
+resource_name = "idle"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_46rjc"]
+_data = {
+"RESET": SubResource("Animation_rjmyo"),
+"end": SubResource("Animation_xki0v"),
+"idle": SubResource("Animation_jde6n"),
+"start": SubResource("Animation_5w6q7")
+}
+
+[node name="square" type="RigidBody2D" node_paths=PackedStringArray("instancer")]
+collision_layer = 2
+collision_mask = 7
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_2ffs2")
+gravity_scale = 0.0
+script = ExtResource("1_5cbts")
+instancer = NodePath("WeakPointInstance")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_qfrx8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gbgyn")
+
+[node name="WeakPointInstance" parent="." instance=ExtResource("3_1cm0g")]
+
+[node name="Marker2D" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(-50, -50)
+
+[node name="Marker2D2" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(-50, 50)
+
+[node name="Marker2D3" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(50, 50)
+
+[node name="Marker2D4" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(50, -50)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_46rjc")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("4_t320u")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

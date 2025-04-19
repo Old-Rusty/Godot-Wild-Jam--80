@@ -1,0 +1,206 @@
+[gd_scene load_steps=14 format=3 uid="uid://b0723ai8638lk"]
+
+[ext_resource type="Texture2D" uid="uid://hn8sjrcnuvdm" path="res://assets/Simple Shapes/Circle.png" id="1_iuq15"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_vijd8"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://duwovfh1uj425" path="res://player/animation_tree/new_animation_node_state_machine.tres" id="3_3o7y3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_if5dw"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rtpe"]
+radius = 53.0848
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gdwb"]
+radius = 65.0
+
+[sub_resource type="Animation" id="Animation_s6lek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_81vrh"]
+resource_name = "aim"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.533333),
+"transitions": PackedFloat32Array(0.8, 1.5),
+"update": 0,
+"values": [Color(1, 0.337255, 0, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6str7"]
+resource_name = "grow_in"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-4, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="Animation" id="Animation_3pcay"]
+resource_name = "hovering"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7j8cn"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(2),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5hbvx"]
+resource_name = "moving"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 2),
+"update": 0,
+"values": [Color(1, 0.145098, 0, 0.745098), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.2),
+"update": 0,
+"values": [Vector2(0.25, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vdu2e"]
+_data = {
+"RESET": SubResource("Animation_s6lek"),
+"aim": SubResource("Animation_81vrh"),
+"grow_in": SubResource("Animation_6str7"),
+"hovering": SubResource("Animation_3pcay"),
+"idle": SubResource("Animation_7j8cn"),
+"moving": SubResource("Animation_5hbvx")
+}
+
+[node name="Player" type="RigidBody2D"]
+collision_mask = 6
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_if5dw")
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_vijd8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.980392, 0.494118, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_iuq15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5rtpe")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2gdwb")
+debug_color = Color(0.155731, 0.644879, 0, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vdu2e")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+tree_root = ExtResource("3_3o7y3")
+anim_player = NodePath("../AnimationPlayer")
+parameters/aiming/blend_position = 0.0104477
+parameters/moving/blend_position = -0.280597
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

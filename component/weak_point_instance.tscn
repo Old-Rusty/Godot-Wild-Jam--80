@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuj7t7w2q6wj3"]
+
+[ext_resource type="Script" path="res://component/weak_point_instance.gd" id="1_hag8p"]
+
+[node name="WeakPointInstance" type="Node2D"]
+script = ExtResource("1_hag8p")

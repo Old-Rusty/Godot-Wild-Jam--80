@@ -1,0 +1,46 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=10 format=3 uid="uid://tut60d3vhfs1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j4qqa"]
+animation = &"end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_auktl"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfw71"]
+animation = &"start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ape06"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_0xfrv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_spqhy"]
+xfade_time = 0.5
+xfade_curve = SubResource("Curve_0xfrv")
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_lhucg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u61dk"]
+xfade_time = 0.1
+xfade_curve = SubResource("Curve_lhucg")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7wrwy"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/End/position = Vector2(859, 105)
+states/Start/position = Vector2(204, 105)
+states/end/node = SubResource("AnimationNodeAnimation_j4qqa")
+states/end/position = Vector2(645, 105)
+states/idle/node = SubResource("AnimationNodeAnimation_auktl")
+states/idle/position = Vector2(478, 105)
+states/start/node = SubResource("AnimationNodeAnimation_sfw71")
+states/start/position = Vector2(330, 105)
+transitions = ["Start", "start", SubResource("AnimationNodeStateMachineTransition_ape06"), "start", "idle", SubResource("AnimationNodeStateMachineTransition_spqhy"), "idle", "end", SubResource("AnimationNodeStateMachineTransition_u61dk"), "end", "End", SubResource("AnimationNodeStateMachineTransition_7wrwy")]
