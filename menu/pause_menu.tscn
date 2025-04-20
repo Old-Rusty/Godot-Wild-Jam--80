@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddpacw13qw047"]
+[gd_scene load_steps=11 format=3 uid="uid://ddpacw13qw047"]
 
 [ext_resource type="Script" uid="uid://dm2nt0tir5r22" path="res://menu/pause_menu.gd" id="1_inj1j"]
-[ext_resource type="Texture2D" uid="uid://dnv0do15hrr4e" path="res://assets/menu assets/Square Buttons/Play Square Button.png" id="2_5ijvr"]
+[ext_resource type="Texture2D" uid="uid://blbjd2k7nlmj2" path="res://assets/menu assets/Square Buttons/Play Square Button 1.png" id="2_j3ibt"]
 [ext_resource type="Texture2D" uid="uid://dyffu65h542vn" path="res://assets/menu assets/Square Buttons/Home Square Button.png" id="2_lgp46"]
 [ext_resource type="Texture2D" uid="uid://dqb7wpw148umy" path="res://assets/menu assets/Square Buttons/X Square Button.png" id="3_5ijvr"]
+[ext_resource type="Texture2D" uid="uid://df71f2d4uixoj" path="res://assets/menu assets/Square Buttons/Play Square Button 2.png" id="3_n4x21"]
+[ext_resource type="Texture2D" uid="uid://dlhx6lfnytbh2" path="res://assets/menu assets/Square Buttons/Home Square Button 1.png" id="5_85exe"]
+[ext_resource type="Texture2D" uid="uid://2k2y31jyfvj0" path="res://assets/menu assets/Square Buttons/Home Square Button 2.png" id="6_nueu6"]
+[ext_resource type="Texture2D" uid="uid://bcf087ws845jb" path="res://assets/menu assets/Square Buttons/X Square Button 1.png" id="8_g47nb"]
+[ext_resource type="Texture2D" uid="uid://cfxxqatdwpqwi" path="res://assets/menu assets/Square Buttons/X Square Button 2.png" id="9_0776l"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yvytn"]
 load_path = "res://.godot/imported/Play Square Button.png-c5ac38a27f6473481418e14598410f15.ctex"
@@ -46,9 +51,9 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 mouse_filter = 1
 texture_normal = SubResource("CompressedTexture2D_yvytn")
-texture_pressed = ExtResource("2_5ijvr")
-texture_hover = ExtResource("2_5ijvr")
-texture_focused = ExtResource("2_5ijvr")
+texture_pressed = ExtResource("2_j3ibt")
+texture_hover = ExtResource("3_n4x21")
+texture_focused = ExtResource("3_n4x21")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -57,9 +62,9 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("2_lgp46")
-texture_pressed = ExtResource("2_lgp46")
-texture_hover = ExtResource("2_lgp46")
-texture_focused = ExtResource("2_lgp46")
+texture_pressed = ExtResource("5_85exe")
+texture_hover = ExtResource("6_nueu6")
+texture_focused = ExtResource("6_nueu6")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -69,10 +74,10 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../Resume")
 mouse_filter = 1
 texture_normal = ExtResource("3_5ijvr")
-texture_pressed = ExtResource("3_5ijvr")
-texture_hover = ExtResource("3_5ijvr")
+texture_pressed = ExtResource("8_g47nb")
+texture_hover = ExtResource("9_0776l")
 texture_disabled = ExtResource("3_5ijvr")
-texture_focused = ExtResource("3_5ijvr")
+texture_focused = ExtResource("9_0776l")
 ignore_texture_size = true
 stretch_mode = 5
 

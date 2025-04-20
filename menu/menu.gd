@@ -1,15 +1,40 @@
 extends Control
+@onready var sfxClick =  $sfxButton
+var playSignal: bool
+var exitSignal: bool
+@onready var aniPlayer = $AnimationPlayer
 
 func _ready():
-	$MarginContainer/VBoxContainer/Play.grab_focus()
+	$MarginContainer/VBoxContainer/Settings.grab_focus()
+	playSignal = false
+	exitSignal = false
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://main.tscn")
-
+	aniPlayer.play("playTrans")
+	sfxClick.play()
+	playSignal = true
+	
 
 func _on_options_pressed():
-	pass # Replace with function body.
+	sfxClick.play()
 
 
 func _on_exit_pressed():
-	get_tree().quit()
+	aniPlayer.play("exitTrans")
+	sfxClick.play()
+	exitSignal = true
+
+
+#func _on_sfx_button_finished():
+#	if playSignal:
+#		get_tree().change_scene_to_file("res://main.tscn")
+#	elif exitSignal:
+#		get_tree().quit()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "playTrans":
+		get_tree().change_scene_to_file("res://main.tscn")
+	elif anim_name == "exitTrans":
+		get_tree().quit()
+	

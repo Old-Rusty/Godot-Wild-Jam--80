@@ -1,7 +1,88 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2cy87k48c27"]
+[gd_scene load_steps=15 format=3 uid="uid://c2cy87k48c27"]
 
 [ext_resource type="Script" uid="uid://bh4qf3sv6cmww" path="res://menu/menu.gd" id="1_j0t7f"]
 [ext_resource type="Texture2D" uid="uid://dnv0do15hrr4e" path="res://assets/menu assets/Square Buttons/Play Square Button.png" id="2_g18jx"]
+[ext_resource type="Texture2D" uid="uid://c8l4ub22jga1r" path="res://assets/menu assets/Square Buttons/Settings Square Button.png" id="3_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://blbjd2k7nlmj2" path="res://assets/menu assets/Square Buttons/Play Square Button 1.png" id="3_s4hbh"]
+[ext_resource type="Texture2D" uid="uid://df71f2d4uixoj" path="res://assets/menu assets/Square Buttons/Play Square Button 2.png" id="4_6fswf"]
+[ext_resource type="Texture2D" uid="uid://bnej3d5okmlrq" path="res://assets/menu assets/Square Buttons/On Off Square Button.png" id="4_svuvw"]
+[ext_resource type="Texture2D" uid="uid://bgk0qdxpj7j6g" path="res://assets/menu assets/Square Buttons/On Off Square Button 2.png" id="7_bc54p"]
+[ext_resource type="Texture2D" uid="uid://b5wmfcgdvatyf" path="res://assets/menu assets/Square Buttons/On Off Square Button 1.png" id="8_043lm"]
+[ext_resource type="AudioStream" uid="uid://bxfmkl3ilpsja" path="res://assets/menu assets/game sound/Retro8.mp3" id="9_6fswf"]
+
+[sub_resource type="Animation" id="Animation_6fswf"]
+resource_name = "playTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bc54p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_043lm"]
+resource_name = "exitTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iesyu"]
+resource_name = "settingTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_043lm"]
+_data = {
+&"RESET": SubResource("Animation_bc54p"),
+&"exitTrans": SubResource("Animation_043lm"),
+&"playTrans": SubResource("Animation_6fswf"),
+&"settingTrans": SubResource("Animation_iesyu")
+}
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -14,6 +95,17 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_j0t7f")
 
+[node name="transition" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_left = 279.0
@@ -23,31 +115,50 @@ offset_bottom = 199.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Exit")
 texture_normal = ExtResource("2_g18jx")
-texture_pressed = ExtResource("2_g18jx")
-texture_hover = ExtResource("2_g18jx")
-texture_focused = ExtResource("2_g18jx")
+texture_pressed = ExtResource("3_s4hbh")
+texture_hover = ExtResource("4_6fswf")
+texture_focused = ExtResource("4_6fswf")
 ignore_texture_size = true
 stretch_mode = 5
-metadata/_edit_lock_ = true
 
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Settings" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-text = "SETTINGS"
-metadata/_edit_lock_ = true
+texture_normal = ExtResource("3_pbjm4")
+texture_pressed = ExtResource("3_pbjm4")
+texture_hover = ExtResource("3_pbjm4")
+texture_focused = ExtResource("3_pbjm4")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Play")
-text = "EXIT"
-metadata/_edit_lock_ = true
+texture_normal = ExtResource("4_svuvw")
+texture_pressed = ExtResource("7_bc54p")
+texture_hover = ExtResource("8_043lm")
+texture_focused = ExtResource("8_043lm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="sfxButton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_6fswf")
+volume_db = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_043lm")
+}
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="finished" from="sfxButton" to="." method="_on_sfx_button_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

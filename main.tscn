@@ -52,6 +52,27 @@ tile_set = SubResource("TileSet_kgsy1")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.3, 0.3)
 
+[node name="Control" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+follow_viewport_enabled = true
+
+[node name="transition" type="ColorRect" parent="Camera2D/CanvasLayer"]
+self_modulate = Color(0, 0, 0, 1)
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
 [node name="Triangle7" parent="." instance=ExtResource("2_ivkhf")]
 position = Vector2(336, 136)
 
