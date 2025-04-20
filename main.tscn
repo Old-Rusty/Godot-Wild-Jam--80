@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://dq30awadusmue"]
+[gd_scene load_steps=9 format=4 uid="uid://dq30awadusmue"]
 
 [ext_resource type="Script" uid="uid://beoyslphkbwya" path="res://main.gd" id="1_jumfu"]
 [ext_resource type="PackedScene" uid="uid://b0723ai8638lk" path="res://player/player.tscn" id="1_rx7db"]
 [ext_resource type="PackedScene" uid="uid://c47cw3swe67qb" path="res://enemy/triangle.tscn" id="2_ivkhf"]
 [ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/Simple Shapes/Square.png" id="3_npoil"]
+[ext_resource type="PackedScene" uid="uid://3km1osj0wnwi" path="res://menu/gui.tscn" id="5_lquwl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_quegp"]
 bounce = 1.0
@@ -65,3 +66,6 @@ position = Vector2(387, -178)
 
 [node name="Triangle4" parent="." instance=ExtResource("2_ivkhf")]
 position = Vector2(-471, 190)
+
+[node name="GUI" parent="." instance=ExtResource("5_lquwl")]
+process_mode = 1
