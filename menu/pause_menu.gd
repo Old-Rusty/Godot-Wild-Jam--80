@@ -1,5 +1,6 @@
 extends Control
 
+
 var is_paused: bool = false #setget set_is_paused
 #var _is_paused: bool : 
 #	set(value):
@@ -9,7 +10,9 @@ var is_paused: bool = false #setget set_is_paused
 		#return is_paused
 		#set_is_paused(_is_paused)
 
-
+func _ready():
+	$CenterContainer/VBoxContainer/Resume.grab_focus()
+	
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
