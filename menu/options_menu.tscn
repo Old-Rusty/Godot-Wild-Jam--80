@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://k5alc72lsrsh"]
+
+[ext_resource type="Texture2D" uid="uid://dqb7wpw148umy" path="res://assets/arts/menu assets/Square Buttons/X Square Button.png" id="1_ptfkf"]
+[ext_resource type="Script" uid="uid://c7ig7q5ldvceo" path="res://menu/options_menu.gd" id="1_w63va"]
+[ext_resource type="Texture2D" uid="uid://bcf087ws845jb" path="res://assets/arts/menu assets/Square Buttons/X Square Button 1.png" id="2_w63va"]
+[ext_resource type="Texture2D" uid="uid://cfxxqatdwpqwi" path="res://assets/arts/menu assets/Square Buttons/X Square Button 2.png" id="3_ybiyf"]
+
+[node name="options_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w63va")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -48
+
+[node name="exitButton" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+texture_normal = ExtResource("1_ptfkf")
+texture_pressed = ExtResource("2_w63va")
+texture_hover = ExtResource("3_ybiyf")
+texture_focused = ExtResource("3_ybiyf")
+ignore_texture_size = true
+stretch_mode = 5

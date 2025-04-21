@@ -5,7 +5,7 @@ var exitSignal: bool
 @onready var aniPlayer = $AnimationPlayer
 
 func _ready():
-	$MarginContainer/VBoxContainer/Settings.grab_focus()
+	#$MarginContainer/VBoxContainer/Settings.grab_focus()
 	playSignal = false
 	exitSignal = false
 
