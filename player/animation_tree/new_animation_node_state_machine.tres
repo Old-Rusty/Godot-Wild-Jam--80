@@ -90,3 +90,4 @@ states/idle/position = Vector2(333, 100)
 states/moving/node = SubResource("AnimationNodeBlendSpace1D_0qyio")
 states/moving/position = Vector2(333, 197)
 transitions = ["idle", "hover", SubResource("AnimationNodeStateMachineTransition_w3cdv"), "hover", "aiming", SubResource("AnimationNodeStateMachineTransition_mt0lo"), "aiming", "hover", SubResource("AnimationNodeStateMachineTransition_2rce3"), "hover", "idle", SubResource("AnimationNodeStateMachineTransition_fwvgu"), "aiming", "moving", SubResource("AnimationNodeStateMachineTransition_klgsd"), "moving", "idle", SubResource("AnimationNodeStateMachineTransition_v1dde"), "Start", "grow_in", SubResource("AnimationNodeStateMachineTransition_p8k1b"), "grow_in", "idle", SubResource("AnimationNodeStateMachineTransition_r2lnb")]
+graph_offset = Vector2(-94, 64)

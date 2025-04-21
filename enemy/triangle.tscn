@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c47cw3swe67qb"]
+[gd_scene load_steps=12 format=3 uid="uid://c47cw3swe67qb"]
 
 [ext_resource type="Texture2D" uid="uid://3t8uettmxbbb" path="res://assets/arts/Simple Shapes/Triangle.png" id="1_a65nk"]
 [ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://scripts/enemy/basic_enemy.gd" id="1_kaafy"]
 [ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="2_hd8b4"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="4_k4rka"]
+[ext_resource type="AudioStream" uid="uid://bl76w3lkf2bh7" path="res://assets/sounds/SE-Collision_08A.ogg" id="5_l30fd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5svk"]
 bounce = 1.0
@@ -172,4 +173,18 @@ active = false
 tree_root = ExtResource("4_k4rka")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_l30fd")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(0, -34)
+polygon = PackedVector2Array(1, -27, 55, 72, -57, 71)
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0723ai8638lk"]
+[gd_scene load_steps=17 format=3 uid="uid://b0723ai8638lk"]
 
 [ext_resource type="Texture2D" uid="uid://hn8sjrcnuvdm" path="res://assets/arts/Simple Shapes/Circle.png" id="1_iuq15"]
 [ext_resource type="Script" uid="uid://cbvji6hh4n7ds" path="res://scripts/player/player.gd" id="1_vijd8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://duwovfh1uj425" path="res://player/animation_tree/new_animation_node_state_machine.tres" id="3_3o7y3"]
+[ext_resource type="Texture2D" uid="uid://de2awuk7ox4su" path="res://assets/arts/circle_small.png" id="4_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://clb5vvmbfy4ro" path="res://component/gpu_particles_2d.tscn" id="4_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://bl76w3lkf2bh7" path="res://assets/sounds/SE-Collision_08A.ogg" id="6_g6k8r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_if5dw"]
 bounce = 1.0
@@ -11,7 +14,7 @@ bounce = 1.0
 radius = 53.0848
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2gdwb"]
-radius = 65.0
+radius = 70.0
 
 [sub_resource type="Animation" id="Animation_s6lek"]
 length = 0.001
@@ -34,6 +37,18 @@ tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -72,9 +87,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0.2, 0.2)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3pcay"]
 resource_name = "hovering"
+length = 2.0
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -83,10 +112,10 @@ tracks/0/path = NodePath("Sprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 0.2),
 "update": 0,
-"values": [Vector2(0.3, 0.3)]
+"values": [Vector2(0.3, 0.3), Vector2(0.2, 0.2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -95,6 +124,18 @@ tracks/1/path = NodePath("Sprite2D:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -129,6 +170,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 0.980392, 0.494118, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.980392, 0.494118, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_5hbvx"]
 resource_name = "moving"
@@ -143,7 +196,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(0.2, 2),
 "update": 0,
-"values": [Color(1, 0.145098, 0, 0.745098), Color(1, 0, 0, 1)]
+"values": [Color(1, 0.145098, 0, 1), Color(1, 0, 0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -157,6 +210,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0.25, 0.2)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.145098, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vdu2e"]
 _data = {
@@ -169,22 +234,197 @@ _data = {
 }
 
 [node name="Player" type="RigidBody2D"]
+show_behind_parent = true
 collision_mask = 6
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_if5dw")
 gravity_scale = 0.0
 linear_damp = 0.5
 script = ExtResource("1_vijd8")
+traj_max_points = 5
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer"]
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect2" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect2"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/HBoxContainer/TextureRect2"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect2/TextureRect"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect3" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect3"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect4" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect4"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect5" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect5"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect6" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect6"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect7" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect7"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect8" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect8"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect9" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect9"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect10" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect10"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect11" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect11"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect12" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect12"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect13" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect13"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect14" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect14"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="TextureRect15" type="TextureRect" parent="UILayer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UILayer/HBoxContainer/TextureRect15"]
+position = Vector2(15, 15)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_g6k8r")
+centered = false
+
+[node name="Line2D" type="Line2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.980392, 0.494118, 1)
 self_modulate = Color(1, 0.980392, 0.494118, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_iuq15")
+
+[node name="GPUParticles2D" parent="Sprite2D" instance=ExtResource("4_qjkh3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_5rtpe")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2gdwb")
@@ -202,5 +442,13 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/aiming/blend_position = 0.0104477
 parameters/moving/blend_position = -0.280597
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_g6k8r")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

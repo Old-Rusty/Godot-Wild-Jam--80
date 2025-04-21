@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://clg54dciq6r6v"]
+
+[ext_resource type="Texture2D" uid="uid://de2awuk7ox4su" path="res://assets/arts/circle_small.png" id="1_cu53t"]
+
+[node name="UILayer" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/TextureRect"]
+position = Vector2(15, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cu53t")
+centered = false
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/TextureRect2"]
+position = Vector2(15, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cu53t")
+centered = false
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/TextureRect3"]
+position = Vector2(15, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cu53t")
+centered = false
+
+[node name="TextureRect4" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/TextureRect4"]
+position = Vector2(15, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cu53t")
+centered = false

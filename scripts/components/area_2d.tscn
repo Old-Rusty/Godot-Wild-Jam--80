@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://byrxs6ljn65f2"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-81.4293, -15.2915, 1.0053, -74.4184, 78.4134, -18.3497, 50.265, 74.4184, -47.2491, 73.399)

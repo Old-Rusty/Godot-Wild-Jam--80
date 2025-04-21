@@ -1,0 +1,195 @@
+[gd_scene load_steps=17 format=3 uid="uid://b4o6dur7cch8m"]
+
+[ext_resource type="Script" uid="uid://bh4qf3sv6cmww" path="res://scripts/ui/menu.gd" id="1_kgmjp"]
+[ext_resource type="Texture2D" uid="uid://bbm24l5c4saaq" path="res://assets/arts/Clouds/Clouds 5/1.png" id="2_5l220"]
+[ext_resource type="Texture2D" uid="uid://k6e5w3br4h4r" path="res://assets/arts/menu assets/Square Buttons/Return Square Button.png" id="2_ianer"]
+[ext_resource type="Texture2D" uid="uid://bnej3d5okmlrq" path="res://assets/arts/menu assets/Square Buttons/On Off Square Button.png" id="3_c5f1q"]
+[ext_resource type="Texture2D" uid="uid://dyffu65h542vn" path="res://assets/arts/menu assets/Square Buttons/Home Square Button.png" id="3_ir314"]
+[ext_resource type="Texture2D" uid="uid://dlhx6lfnytbh2" path="res://assets/arts/menu assets/Square Buttons/Home Square Button 1.png" id="4_5l220"]
+[ext_resource type="Texture2D" uid="uid://bgk0qdxpj7j6g" path="res://assets/arts/menu assets/Square Buttons/On Off Square Button 2.png" id="4_wp8tq"]
+[ext_resource type="Texture2D" uid="uid://b5wmfcgdvatyf" path="res://assets/arts/menu assets/Square Buttons/On Off Square Button 1.png" id="5_d4d21"]
+[ext_resource type="Texture2D" uid="uid://2k2y31jyfvj0" path="res://assets/arts/menu assets/Square Buttons/Home Square Button 2.png" id="5_hgc47"]
+[ext_resource type="AudioStream" uid="uid://bxfmkl3ilpsja" path="res://assets/sounds/ui/Retro8.mp3" id="6_n7hit"]
+
+[sub_resource type="Animation" id="Animation_bc54p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_38lw0"]
+resource_name = "enterTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_043lm"]
+resource_name = "exitTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6fswf"]
+resource_name = "playTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iesyu"]
+resource_name = "settingTrans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_043lm"]
+_data = {
+&"RESET": SubResource("Animation_bc54p"),
+&"enterTrans": SubResource("Animation_38lw0"),
+&"exitTrans": SubResource("Animation_043lm"),
+&"playTrans": SubResource("Animation_6fswf"),
+&"settingTrans": SubResource("Animation_iesyu")
+}
+
+[node name="WinMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_kgmjp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5l220")
+
+[node name="transition" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0)
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 98.0
+offset_right = 361.0
+offset_bottom = 199.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+texture_normal = ExtResource("2_ianer")
+texture_pressed = ExtResource("2_ianer")
+texture_hover = ExtResource("2_ianer")
+texture_focused = ExtResource("2_ianer")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Home" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+focus_neighbor_top = NodePath("../Exit")
+texture_normal = ExtResource("3_ir314")
+texture_pressed = ExtResource("4_5l220")
+texture_hover = ExtResource("5_hgc47")
+texture_focused = ExtResource("2_ianer")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Exit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Play")
+texture_normal = ExtResource("3_c5f1q")
+texture_pressed = ExtResource("4_wp8tq")
+texture_hover = ExtResource("5_d4d21")
+texture_focused = ExtResource("5_d4d21")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="sfxButton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_n7hit")
+volume_db = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_043lm")
+}
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Home" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="finished" from="sfxButton" to="." method="_on_sfx_button_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

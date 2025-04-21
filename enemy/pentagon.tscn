@@ -1,27 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bk2ubsq3uxexr"]
+[gd_scene load_steps=13 format=3 uid="uid://bk2ubsq3uxexr"]
 
 [ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://scripts/enemy/basic_enemy.gd" id="1_5gchv"]
 [ext_resource type="Texture2D" uid="uid://blf204divf0iw" path="res://assets/arts/Simple Shapes/Pentagon.png" id="1_xwyxw"]
 [ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="2_i38xf"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="3_i38xf"]
+[ext_resource type="AudioStream" uid="uid://bl76w3lkf2bh7" path="res://assets/sounds/SE-Collision_08A.ogg" id="5_ugwk1"]
+[ext_resource type="PackedScene" uid="uid://byrxs6ljn65f2" path="res://scripts/components/area_2d.tscn" id="6_ql4yv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i38xf"]
 bounce = 1.0
-
-[sub_resource type="Animation" id="Animation_5gchv"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.3, 0.3)]
-}
 
 [sub_resource type="Animation" id="Animation_uxxyk"]
 length = 0.001
@@ -49,34 +36,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
-
-[sub_resource type="Animation" id="Animation_ugwk1"]
-resource_name = "start"
-length = 0.5
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 5),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0.3, 0.3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 3),
-"update": 0,
-"values": [-1.5708, 0.0]
+"values": [Color(1, 0, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ql4yv"]
@@ -107,6 +77,86 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 0.523599, -3.14159]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.666667, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5gchv"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.666667, 0, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ugwk1"]
+resource_name = "start"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 3),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.666667, 0, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_avqta"]
 _data = {
@@ -127,7 +177,8 @@ linear_damp = 1.0
 script = ExtResource("1_5gchv")
 instancer = NodePath("WeakPointInstance")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]
+self_modulate = Color(1, 0, 1, 1)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_xwyxw")
 
@@ -157,7 +208,14 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 tree_root = ExtResource("3_i38xf")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ugwk1")
+
+[node name="Area2D" parent="." instance=ExtResource("6_ql4yv")]
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

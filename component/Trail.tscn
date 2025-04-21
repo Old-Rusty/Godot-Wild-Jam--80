@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://oj3e5imw4dx0"]
+
+[ext_resource type="Script" uid="uid://sk8i00dfcpje" path="res://scripts/components/trail.gd" id="1_cwmeb"]
+[ext_resource type="Texture2D" uid="uid://bpkahmhqp444e" path="res://assets/arts/crayon_trail.png" id="1_hnvdx"]
+
+[sub_resource type="Curve" id="Curve_cwmeb"]
+_data = [Vector2(0, 0.483146), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_kau21"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[node name="Trail" type="Line2D"]
+show_behind_parent = true
+top_level = true
+width_curve = SubResource("Curve_cwmeb")
+default_color = Color(1, 0.980392, 0.494118, 1)
+gradient = SubResource("Gradient_kau21")
+texture = ExtResource("1_hnvdx")
+script = ExtResource("1_cwmeb")
+max_points = 10

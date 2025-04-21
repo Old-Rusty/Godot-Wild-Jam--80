@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkcisf2banry6"]
+[gd_scene load_steps=13 format=3 uid="uid://dkcisf2banry6"]
 
 [ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://scripts/enemy/basic_enemy.gd" id="1_5cbts"]
 [ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/arts/Simple Shapes/Square.png" id="2_qfrx8"]
 [ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="3_1cm0g"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="4_t320u"]
+[ext_resource type="AudioStream" uid="uid://bl76w3lkf2bh7" path="res://assets/sounds/SE-Collision_08A.ogg" id="5_o70xd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2ffs2"]
 bounce = 1.0
@@ -25,6 +26,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0.2, 0.2)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.333333, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_xki0v"]
 resource_name = "end"
@@ -42,6 +55,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0.2, 0.2), Vector2(0.4, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.333333, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_jde6n"]
 resource_name = "idle"
@@ -57,6 +82,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.333333, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5w6q7"]
@@ -74,6 +111,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.2, 2),
 "update": 0,
 "values": [Vector2(0.2, 0), Vector2(0.2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.333333, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46rjc"]
@@ -95,6 +144,7 @@ script = ExtResource("1_5cbts")
 instancer = NodePath("WeakPointInstance")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.333333, 1, 1, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_qfrx8")
 
@@ -125,4 +175,16 @@ active = false
 tree_root = ExtResource("4_t320u")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_o70xd")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-55, -55, 57, -56, 55, 55, -55, 56)
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
