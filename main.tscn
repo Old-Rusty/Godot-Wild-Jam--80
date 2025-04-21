@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=4 uid="uid://dq30awadusmue"]
+[gd_scene load_steps=15 format=4 uid="uid://dq30awadusmue"]
 
 [ext_resource type="Script" uid="uid://beoyslphkbwya" path="res://main.gd" id="1_jumfu"]
 [ext_resource type="PackedScene" uid="uid://b0723ai8638lk" path="res://player/player.tscn" id="1_rx7db"]
 [ext_resource type="PackedScene" uid="uid://c47cw3swe67qb" path="res://enemy/triangle.tscn" id="2_ivkhf"]
-[ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/Simple Shapes/Square.png" id="3_npoil"]
+[ext_resource type="Texture2D" uid="uid://wlnj5ni53v8i" path="res://assets/arts/Simple Shapes/Square.png" id="3_npoil"]
+[ext_resource type="Script" uid="uid://dr8da413v1fri" path="res://scripts/components/spawner.gd" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://3km1osj0wnwi" path="res://menu/gui.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bk2ubsq3uxexr" path="res://enemy/pentagon.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://dkcisf2banry6" path="res://enemy/square.tscn" id="8_kek77"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_quegp"]
 bounce = 1.0
@@ -30,20 +33,63 @@ physics_layer_0/collision_mask = 0
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_quegp")
 sources/2 = SubResource("TileSetAtlasSource_yi3v5")
 
+[sub_resource type="Animation" id="Animation_lquwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionLayer/transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "fade_in_trans"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionLayer/transition:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mycd"]
+_data = {
+&"RESET": SubResource("Animation_lquwl"),
+&"fade_in_trans": SubResource("Animation_1bvp3")
+}
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_jumfu")
 
+[node name="PauseMenu" parent="." instance=ExtResource("5_lquwl")]
+process_mode = 1
+
+[node name="TransitionLayer" type="CanvasLayer" parent="."]
+
+[node name="transition" type="ColorRect" parent="TransitionLayer"]
+self_modulate = Color(0, 0, 0, 1)
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Player" parent="." instance=ExtResource("1_rx7db")]
 position = Vector2(-2, 3)
-
-[node name="Triangle" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(95, -316)
-
-[node name="Triangle3" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(305, -316)
-
-[node name="Triangle2" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(-205, -370)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAFAAEAAgAAAAAAAAAFAAAAAgAAAAAAAAAFAP//AgAAAAAAAAAFAP7/AgAAAAAAAAAFAP3/AgAAAAAAAAD6//7/AgAAAAAAAAD6/wEAAgAAAAAAAAD6/wAAAgAAAAAAAAD6////AgAAAAAAAAD6//3/AgAAAAAAAAD6/wIAAgAAAAAAAAAFAAIAAgAAAAAAAAD6//z/AgAAAAAAAAD7//z/AgAAAAAAAAD8//z/AgAAAAAAAAD9//z/AgAAAAAAAAD+//z/AgAAAAAAAAD///z/AgAAAAAAAAAAAPz/AgAAAAAAAAABAPz/AgAAAAAAAAACAPz/AgAAAAAAAAADAPz/AgAAAAAAAAAEAPz/AgAAAAAAAAAFAPz/AgAAAAAAAAD6/wMAAgAAAAAAAAD7/wMAAgAAAAAAAAD8/wMAAgAAAAAAAAD9/wMAAgAAAAAAAAD+/wMAAgAAAAAAAAD//wMAAgAAAAAAAAAAAAMAAgAAAAAAAAABAAMAAgAAAAAAAAACAAMAAgAAAAAAAAADAAMAAgAAAAAAAAAEAAMAAgAAAAAAAAAFAAMAAgAAAAAAAAD7/wIAAgAAAAAAAAD8/wIAAgAAAAAAAAD9/wIAAgAAAAAAAAD+/wIAAgAAAAAAAAD//wIAAgAAAAAAAAAAAAIAAgAAAAAAAAABAAIAAgAAAAAAAAACAAIAAgAAAAAAAAADAAIAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAAAAgAAAAAAAAAEAP//AgAAAAAAAAAEAP7/AgAAAAAAAAAEAP3/AgAAAAAAAAABAP3/AgAAAAAAAAAAAP3/AgAAAAAAAAD///3/AgAAAAAAAAD+//3/AgAAAAAAAAACAP3/AgAAAAAAAAADAP3/AgAAAAAAAAD9//3/AgAAAAAAAAD8//3/AgAAAAAAAAD7//3/AgAAAAAAAAD7//7/AgAAAAAAAAD7////AgAAAAAAAAD7/wAAAgAAAAAAAAD7/wEAAgAAAAAAAAA=")
@@ -52,41 +98,58 @@ tile_set = SubResource("TileSet_kgsy1")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.3, 0.3)
 
-[node name="Control" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7mycd")
+}
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-follow_viewport_enabled = true
+[node name="spawner" type="Node2D" parent="." node_paths=PackedStringArray("main")]
+script = ExtResource("5_7mycd")
+main = NodePath("..")
+triangle = ExtResource("2_ivkhf")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
-[node name="transition" type="ColorRect" parent="Camera2D/CanvasLayer"]
-self_modulate = Color(0, 0, 0, 1)
-top_level = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+[node name="Marker2D" type="Marker2D" parent="spawner"]
+position = Vector2(800, 300)
 
-[node name="Triangle7" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(336, 136)
+[node name="Marker2D2" type="Marker2D" parent="spawner"]
+position = Vector2(-400, 150)
 
-[node name="Triangle8" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(-287, -74)
+[node name="Marker2D3" type="Marker2D" parent="spawner"]
+position = Vector2(-400, -150)
 
-[node name="Triangle6" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(-53, -212)
+[node name="Marker2D4" type="Marker2D" parent="spawner"]
+position = Vector2(-800, 320)
 
-[node name="Triangle5" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(387, -178)
+[node name="Marker2D5" type="Marker2D" parent="spawner"]
+position = Vector2(-800, -300)
 
-[node name="Triangle4" parent="." instance=ExtResource("2_ivkhf")]
-position = Vector2(-471, 190)
+[node name="Marker2D6" type="Marker2D" parent="spawner"]
+position = Vector2(800, -300)
 
-[node name="GUI" parent="." instance=ExtResource("5_lquwl")]
-process_mode = 1
+[node name="Marker2D7" type="Marker2D" parent="spawner"]
+position = Vector2(400, -150)
+
+[node name="Marker2D8" type="Marker2D" parent="spawner"]
+position = Vector2(400, 150)
+
+[node name="Marker2D9" type="Marker2D" parent="spawner"]
+position = Vector2(-2, -300)
+
+[node name="Marker2D10" type="Marker2D" parent="spawner"]
+position = Vector2(0, 320)
+
+[node name="Marker2D11" type="Marker2D" parent="spawner"]
+position = Vector2(-800, 0)
+
+[node name="Marker2D12" type="Marker2D" parent="spawner"]
+position = Vector2(800, 3)
+
+[node name="Pentagon" parent="." instance=ExtResource("7_5vw27")]
+position = Vector2(-247, 113)
+
+[node name="Square" parent="." instance=ExtResource("8_kek77")]
+position = Vector2(-247, -111)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

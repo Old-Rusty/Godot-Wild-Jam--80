@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://b0723ai8638lk"]
 
-[ext_resource type="Texture2D" uid="uid://hn8sjrcnuvdm" path="res://assets/Simple Shapes/Circle.png" id="1_iuq15"]
-[ext_resource type="Script" uid="uid://cbvji6hh4n7ds" path="res://player/player.gd" id="1_vijd8"]
+[ext_resource type="Texture2D" uid="uid://hn8sjrcnuvdm" path="res://assets/arts/Simple Shapes/Circle.png" id="1_iuq15"]
+[ext_resource type="Script" uid="uid://cbvji6hh4n7ds" path="res://scripts/player/player.gd" id="1_vijd8"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://duwovfh1uj425" path="res://player/animation_tree/new_animation_node_state_machine.tres" id="3_3o7y3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_if5dw"]
@@ -173,7 +173,7 @@ collision_mask = 6
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_if5dw")
 gravity_scale = 0.0
-linear_damp = 1.0
+linear_damp = 0.5
 script = ExtResource("1_vijd8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -192,7 +192,7 @@ debug_color = Color(0.155731, 0.644879, 0, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_vdu2e")
+&"": SubResource("AnimationLibrary_vdu2e")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

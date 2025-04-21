@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c47cw3swe67qb"]
 
-[ext_resource type="Texture2D" uid="uid://3t8uettmxbbb" path="res://assets/Simple Shapes/Triangle.png" id="1_a65nk"]
-[ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://enemy/basic_enemy.gd" id="1_kaafy"]
+[ext_resource type="Texture2D" uid="uid://3t8uettmxbbb" path="res://assets/arts/Simple Shapes/Triangle.png" id="1_a65nk"]
+[ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://scripts/enemy/basic_enemy.gd" id="1_kaafy"]
 [ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="2_hd8b4"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="4_k4rka"]
 
@@ -48,7 +48,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(0.4, 2),
 "update": 0,
-"values": [Vector2(0.2, 0.2), Vector2(0.5, 0.5)]
+"values": [Vector2(0.2, 0.2), Vector2(0, 0.3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -129,13 +129,13 @@ _data = {
 &"start": SubResource("Animation_3s6mu")
 }
 
-[node name="Triangle" type="RigidBody2D" node_paths=PackedStringArray("instancer")]
+[node name="Triangle" type="RigidBody2D" node_paths=PackedStringArray("instancer") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 7
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_y5svk")
 gravity_scale = 0.0
-linear_damp = 1.0
+linear_damp = 0.5
 angular_damp = 5.0
 script = ExtResource("1_kaafy")
 instancer = NodePath("WeakPointInstance")
@@ -164,7 +164,7 @@ position = Vector2(-51, 34)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_koqtv")
+&"": SubResource("AnimationLibrary_koqtv")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

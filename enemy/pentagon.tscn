@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=3 uid="uid://bk2ubsq3uxexr"]
+
+[ext_resource type="Script" uid="uid://djyj2qryf85pq" path="res://scripts/enemy/basic_enemy.gd" id="1_5gchv"]
+[ext_resource type="Texture2D" uid="uid://blf204divf0iw" path="res://assets/arts/Simple Shapes/Pentagon.png" id="1_xwyxw"]
+[ext_resource type="PackedScene" uid="uid://cuj7t7w2q6wj3" path="res://component/weak_point_instance.tscn" id="2_i38xf"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://tut60d3vhfs1" path="res://component/animation_roots/WeakPoint.tres" id="3_i38xf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i38xf"]
+bounce = 1.0
+
+[sub_resource type="Animation" id="Animation_5gchv"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_uxxyk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ugwk1"]
+resource_name = "start"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 3),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ql4yv"]
+resource_name = "end"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 2, 3),
+"update": 0,
+"values": [0.0, 0.523599, -3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avqta"]
+_data = {
+&"RESET": SubResource("Animation_uxxyk"),
+&"end": SubResource("Animation_ql4yv"),
+&"idle": SubResource("Animation_5gchv"),
+&"start": SubResource("Animation_ugwk1")
+}
+
+[node name="Pentagon" type="RigidBody2D" node_paths=PackedStringArray("instancer")]
+scale = Vector2(0.994728, 0.98094)
+collision_layer = 2
+collision_mask = 7
+mass = 6.0
+physics_material_override = SubResource("PhysicsMaterial_i38xf")
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_5gchv")
+instancer = NodePath("WeakPointInstance")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_xwyxw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -69, 74, -16, 45, 70, -45, 70, -74, -16)
+
+[node name="WeakPointInstance" parent="." instance=ExtResource("2_i38xf")]
+
+[node name="Marker2D" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(45, 69)
+
+[node name="Marker2D2" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(-45, 69)
+
+[node name="Marker2D3" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(-73, -16)
+
+[node name="Marker2D4" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(73, -16)
+
+[node name="Marker2D5" type="Marker2D" parent="WeakPointInstance"]
+position = Vector2(0, -69)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_avqta")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("3_i38xf")
+anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
