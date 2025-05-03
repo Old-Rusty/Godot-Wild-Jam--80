@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://50qsqxmitcgd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5bbj1"]
+bounce = 1.0
+
+[node name="line" type="RigidBody2D"]
+collision_mask = 6
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_5bbj1")
+gravity_scale = 0.0
+linear_damp = 1.0
+angular_damp = 7.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-60, 0, 60, 0)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

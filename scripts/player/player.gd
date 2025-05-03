@@ -33,7 +33,7 @@ enum State {
 var current_state: State
 
 var moves_list: Array[TextureRect]
-var moves: int = 4
+var moves: int = 10
 
 func _ready() -> void:
 	ani_tree.active = true

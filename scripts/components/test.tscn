@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ys38eml6l5j"]
+
+[ext_resource type="PackedScene" uid="uid://50qsqxmitcgd" path="res://component/line.tscn" id="1_65rh8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="line" parent="." instance=ExtResource("1_65rh8")]
+collision_layer = 2
+collision_mask = 7
+
+[node name="line4" parent="." instance=ExtResource("1_65rh8")]
+position = Vector2(58, 59)
+rotation = 1.5708
+collision_layer = 2
+collision_mask = 7
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2(59, -0.999996)
+node_a = NodePath("../line")
+node_b = NodePath("../line4")
